@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>开始使用layui</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+<body>
+
+<!-- 你的HTML代码 -->
+<button type="button" class="layui-btn" id="test5"><i class="layui-icon"></i>上传视频</button>
+<script src="/layui/layui.js"></script>
+<script>
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form','upload'], function(){
+        var layer = layui.layer
+            , form = layui.form
+            , upload = layui.upload;
+        upload.render({
+            elem: '#test5'
+            ,url: 'http://localhost:8080/upload/upload' //改成您自己的上传接口
+            ,accept: 'video' //视频
+            ,field: 'uploadFile'
+            ,method: 'post'
+            ,done: function(res){
+                layer.msg('上传成功');
+                console.log(res)
+            }
+        });
+    });
+</script>
+</body>
+</html>
